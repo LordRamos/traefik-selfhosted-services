@@ -17,7 +17,7 @@ services:
       - VIRTUAL_PROTO=http
       - VIRTUAL_PORT=9980
       - VIRTUAL_HOST=${COLLABORA_FQDN}
-      # - "extra_params=--o:ssl.enable=false  --o:ssl.termination=true"
+      - "extra_params=--o:ssl.enable=false  --o:ssl.termination=true"
     cap_add:
       - MKNOD
     tty: true
