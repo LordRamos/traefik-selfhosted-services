@@ -1,0 +1,38 @@
+version: '3.3'
+
+services:
+  nextcloud-collabora:
+    image: collabora/code
+    container_name: collabora
+    restart: unless-stopped
+    networks:
+      - traefik-proxy
+    ports:
+      - 9980:9980
+    expose:
+      - "9980"      
+    environment:
+      - domain=${COLLABORA_FQDN}
+      - 'dictionaries=en_US,de_DE'
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=9980
+      - VIRTUAL_HOST=${COLLABORA_FQDN}
+      # - "extra_params=--o:ssl.enable=false  --o:ssl.termination=true"
+    cap_add:
+      - MKNOD
+    tty: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.http.routers.collabora.rule=Host(`${COLLABORA_FQDN}`)"
+      - "traefik.http.routers.collabora.entrypoints=web"
+      - traefik.http.services.collabora.loadbalancer.server.port=9980
+      # - "traefik.http.middlewares.collabora-https-redirect.redirectscheme.scheme=https"
+      # - "traefik.http.routers.collabora.middlewares=collabora-https-redirect"
+      # - "traefik.http.routers.collabora-secure.entrypoints=web-secure"
+      # - "traefik.http.routers.collabora-secure.rule=Host(`${COLLABORA_FQDN}`)"
+      # - "traefik.http.routers.collabora-secure.tls=true"
+      # - "traefik.http.routers.collabora-secure.tls.certresolver=letsencryptresolver"
+networks:
+  traefik-proxy:
+    external: true
