@@ -1,0 +1,46 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik:v3.0"
+    container_name: "traefik"
+    command:
+      - --log.level=DEBUG
+      # - "--api.insecure=true"
+      # - "--providers.docker=true"
+      # - "--providers.docker.exposedbydefault=false"
+      # - "--entryPoints.web.address=:80"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-proxy
+      - traefik.http.routers.traefik.entrypoints=web
+      - traefik.http.routers.traefik.rule=Host(`traefik.localhost`)
+      - traefik.http.routers.traefik.service=api@internal
+      # - traefik.http.routers.traefik.middlewares=redirect@file
+
+      # - traefik.http.routers.traefik_secure.entrypoints=websecure
+      # - traefik.http.routers.traefik_secure.rule=Host(`traefik.localhost`)
+      # - traefik.http.routers.traefik_secure.tls.certresolver=letsencrypt
+      # - traefik.http.routers.traefik_secure.service=api@internal
+      
+    ports:
+      - "2222:2222" # The SSH port
+      - "80:80" # The HTTP port
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
+    networks:
+      - default
+      - traefik-proxy
+
+  # whoami:
+  #   image: "traefik/whoami"
+  #   container_name: "simple-service"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+  #     - "traefik.http.routers.whoami.entrypoints=web"
+networks:
+  traefik-proxy:
+    external: true
