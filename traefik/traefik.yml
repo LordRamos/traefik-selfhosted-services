@@ -14,7 +14,7 @@ entryPoints:
     address: :80
 
   websecure:
-    address: :8080
+    address: :443
 
   ssh:
     address: :2222
@@ -122,3 +122,12 @@ providers:
     #
     exposedByDefault: false
     # swarmMode: false
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: lord.ramoss@gmail.com
+      storage: ./acme.json
+      httpChallenge:
+        # used during the challenge
+        entryPoint: web
