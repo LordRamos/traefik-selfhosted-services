@@ -127,7 +127,7 @@ certificatesResolvers:
   letsencrypt:
     acme:
       email: lord.ramoss@gmail.com
-      storage: ./acme.json
+      storage: acme.json
       httpChallenge:
         # used during the challenge
         entryPoint: web
