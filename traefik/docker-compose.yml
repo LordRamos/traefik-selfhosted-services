@@ -16,9 +16,6 @@ services:
       - traefik.http.routers.traefik.entrypoints=web
       - traefik.http.routers.traefik.rule=Host(`${HOST}`)
       - traefik.http.routers.traefik.service=api@internal
-      # middleware redirect
-      - traefik.http.routers.traefik.middlewares=redirect-to-https
-      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
       # secure
       - traefik.http.routers.traefik_secure.entrypoints=websecure
       - traefik.http.routers.traefik_secure.rule=Host(`${HOST}`)
