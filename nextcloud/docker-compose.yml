@@ -37,14 +37,12 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-proxy
-      - traefik.http.routers.nextcloud.entrypoints=web
-      - traefik.http.routers.nextcloud.rule=Host(`${HOST}`)
-      # - traefik.http.routers.nexcloud_insecure.middlewares=redirect@file
+      - traefik.http.routers.nextcloud_insecure.entrypoints=web
+      - traefik.http.routers.nextcloud_insecure.rule=Host(`${HOST}`)
 
-      # - traefik.http.routers.gitlab.entrypoints=web-secure
-      # - traefik.http.routers.gitlab.rule=Host(`gitlab.domain.com`)
-      # - traefik.http.routers.gitlab.tls.certresolver=letsencrypt
-      # - traefik.http.services.gitlab.loadbalancer.server.port=80
+      - traefik.http.routers.nexcloud.entrypoints=websecure
+      - traefik.http.routers.nexcloud.rule=Host(`${HOST}`)
+      - traefik.http.routers.nexcloud.tls.certresolver=letsencrypt
 
 
       # Can't filter TCP traffic on SNI, see link below
