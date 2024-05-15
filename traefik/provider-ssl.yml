@@ -1,4 +1,4 @@
 tls:
   certificates:
     - certFile: /certs/3dtechnologies/3dtechnologies.io.crt
-    - keyFile: /certs/3dtechnologies/3dtechnologies.io.key
+      keyFile: /certs/3dtechnologies/3dtechnologies.io.key
