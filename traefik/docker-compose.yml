@@ -30,6 +30,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./provider-ssl.yml:/provider-ssl.yml
+      - /etc/ssl:certs
       - /opt/acme.json:/acme.json
     networks:
       - default

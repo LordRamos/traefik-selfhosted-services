@@ -129,6 +129,10 @@ providers:
     exposedByDefault: false
     # swarmMode: false
 
+  # Enable the file provider to define routers / middlewares / services in file
+  file:
+    directory: provider-ssl.yml
+
 certificatesResolvers:
   letsencrypt:
     acme:

@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    - certFile: /certs/3dtechnologies/3dtechnologies.io.pem
+    - keyFile: /certs/3dtechnologies/3dtechnologies.io.key
