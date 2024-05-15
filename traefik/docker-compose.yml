@@ -19,6 +19,7 @@ services:
       # secure
       - traefik.http.routers.traefik_secure.entrypoints=websecure
       - traefik.http.routers.traefik_secure.rule=Host(`${HOST}`)
+      - traefik.http.routers.traefik_secure.tls=true
       # - traefik.http.routers.traefik_secure.tls.certresolver=letsencrypt
       - traefik.http.routers.traefik_secure.service=api@internal
       
