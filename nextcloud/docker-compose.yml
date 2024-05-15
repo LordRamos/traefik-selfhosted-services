@@ -43,9 +43,6 @@ services:
       - traefik.http.routers.nexcloud.entrypoints=websecure
       - traefik.http.routers.nexcloud.rule=Host(`${HOST}`)
       - traefik.http.routers.nexcloud.tls=true
-      - "traefik.http.routers.nextcloud.service=nextcloud"
-      - "traefik.http.services.nextcloud.loadbalancer.server.port=8443"
-      - "traefik.http.services.nextcloud.loadbalancer.server.scheme=https"
       # - traefik.http.routers.nexcloud.tls.certresolver=letsencrypt
 
 
