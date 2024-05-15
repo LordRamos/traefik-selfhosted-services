@@ -42,6 +42,7 @@ services:
 
       - traefik.http.routers.nexcloud.entrypoints=websecure
       - traefik.http.routers.nexcloud.rule=Host(`${HOST}`)
+      - traefik.http.routers.nexcloud.tls=true
       # - traefik.http.routers.nexcloud.tls.certresolver=letsencrypt
 
 

@@ -29,6 +29,7 @@ services:
       - traefik.http.services.collabora.loadbalancer.server.port=9980
       - traefik.http.routers.collabora-secure.entrypoints=websecure"
       - "traefik.http.routers.collabora-secure.rule=Host(`${COLLABORA_FQDN}`)"
+      - "traefik.http.routers.collabora-secure.tls=true"
       # - "traefik.http.routers.collabora-secure.tls.certresolver=letsencrypt"
 networks:
   traefik-proxy:
