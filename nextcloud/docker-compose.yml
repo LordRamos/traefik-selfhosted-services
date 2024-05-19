@@ -34,7 +34,7 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_HOST=db-nextcloud
-      # - TRUSTED_PROXIES=172.33.0.0/16
+      - TRUSTED_PROXIES=172.33.0.0/16
       - NEXTCLOUD_TRUSTED_DOMAINS=${HOST}
     labels:
       - traefik.enable=true
@@ -56,12 +56,7 @@ services:
       # - traefik.http.routers.nexcloud.tls.certresolver=letsencrypt
 
 
-      # Can't filter TCP traffic on SNI, see link below
-      # https://community.containo.us/t/routing-ssh-traffic-with-traefik-v2/717/6
-      # - traefik.tcp.routers.gitlab-ssh.rule=HostSNI(`*`)
-      # - traefik.tcp.routers.gitlab-ssh.entrypoints=ssh
-      # - traefik.tcp.routers.gitlab-ssh.service=gitlab-ssh-svc
-      # - traefik.tcp.services.gitlab-ssh-svc.loadbalancer.server.port=22
+   
 networks:
   nextcloud-network:
     external: true

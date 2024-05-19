@@ -22,6 +22,7 @@ services:
       - traefik.http.routers.traefik_secure.tls=true
       # - traefik.http.routers.traefik_secure.tls.certresolver=letsencrypt
       - traefik.http.routers.traefik_secure.service=api@internal
+     
       
     ports:
       - "2222:2222" # The SSH port
@@ -47,4 +48,7 @@ services:
   #     - "traefik.http.routers.whoami.entrypoints=web"
 networks:
   traefik-proxy:
+    ipam:
+      config:
+        - subnet: 172.33.0.0/16
     external: true
