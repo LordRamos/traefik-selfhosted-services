@@ -39,12 +39,13 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-proxy
-      - traefik.http.routers.nextcloud_insecure.entrypoints=web
-      - traefik.http.routers.nextcloud_insecure.rule=Host(`${HOST}`)
+      # - traefik.http.routers.nextcloud_insecure.entrypoints=web
+      # - traefik.http.routers.nextcloud_insecure.rule=Host(`${HOST}`)
 
       - traefik.http.routers.nexcloud.entrypoints=websecure
       - traefik.http.routers.nexcloud.rule=Host(`${HOST}`)
       - traefik.http.routers.nexcloud.tls=true
+       "traefik.http.services.nextcloud.loadbalancer.server.port=880"
       - traefik.http.middlewares.nextcloud.headers.stsSeconds=155520011
       - traefik.http.middlewares.nextcloud.headers.stsIncludeSubdomains=true
       - traefik.http.middlewares.nextcloud.headers.stsPreload=true
