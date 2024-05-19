@@ -34,8 +34,11 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_HOST=db-nextcloud
-      - TRUSTED_PROXIES=172.70.255.159
+      - TRUSTED_PROXIES=172.70.255.0/32
       - NEXTCLOUD_TRUSTED_DOMAINS=${HOST}
+      - OVERWRITEHOST=${HOST}
+      - overwrite.cli.url=https://${HOST}
+      - OVERWRITEPROTOCOL=https
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-proxy
