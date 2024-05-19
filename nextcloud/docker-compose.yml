@@ -34,7 +34,7 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_HOST=db-nextcloud
-      - TRUSTED_PROXIES=172.33.0.0/16
+      - TRUSTED_PROXIES=172.70.255.159
       - NEXTCLOUD_TRUSTED_DOMAINS=${HOST}
     labels:
       - traefik.enable=true
