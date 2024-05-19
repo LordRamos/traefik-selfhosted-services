@@ -133,11 +133,11 @@ providers:
   file:
     filename: provider-ssl.yml
 
-# certificatesResolvers:
-#   letsencrypt:
-#     acme:
-#       email: lord.ramoss@gmail.com
-#       storage: acme.json
-#       httpChallenge:
-#         # used during the challenge
-#         entryPoint: web
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: lord.ramoss@gmail.com
+      storage: acme.json
+      httpChallenge:
+        # used during the challenge
+        entryPoint: web
