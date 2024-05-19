@@ -34,6 +34,8 @@ services:
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_USER=${DB_USER}
       - MYSQL_HOST=db-nextcloud
+      # - TRUSTED_PROXIES=172.33.0.0/16
+      - NEXTCLOUD_TRUSTED_DOMAINS=${HOST}
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-proxy
@@ -43,6 +45,9 @@ services:
       - traefik.http.routers.nexcloud.entrypoints=websecure
       - traefik.http.routers.nexcloud.rule=Host(`${HOST}`)
       - traefik.http.routers.nexcloud.tls=true
+      - traefik.http.middlewares.nextcloud.headers.stsSeconds=155520011
+      - traefik.http.middlewares.nextcloud.headers.stsIncludeSubdomains=true
+      - traefik.http.middlewares.nextcloud.headers.stsPreload=true
       - traefik.http.routers.nextcloud.middlewares='nextcloud_redirectregex'
       - traefik.http.middlewares.nextcloud_redirectregex.redirectregex.permanent=true
       - traefik.http.middlewares.nextcloud_redirectregex.redirectregex.regex='https://(.*)/.well-known/(?:card|cal)dav'
